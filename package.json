@@ -1,0 +1,29 @@
+{
+	"name": "mysql-promisified",
+	"version": "0.0.1",
+	"description": "mysql but promisified",
+	"main": "index.js",
+	"scripts": {
+		"test": "mocha",
+		"test:cov": "nyc --check-coverage --lines 100 --functions 100 --branches 100 --statements 100 mocha"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ARitz-Cracker/mysql-promisified"
+	},
+	"keywords": [
+		"mysql",
+		"promise"
+	],
+	"author": "Aritz Beobide-Cardinal <aritz@aritzcracker.ca>",
+	"license": "Zlib",
+	"bugs": {
+		"url": "https://github.com/ARitz-Cracker/mysql-promisified/issues"
+	},
+	"homepage": "https://github.com/ARitz-Cracker/mysql-promisified",
+	"dependencies": {
+		"mysql": "^2.18.1",
+		"arc-topromise": "^1.0.3"
+	},
+	"devDependencies": {}
+}
