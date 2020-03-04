@@ -4,6 +4,7 @@ const {toPromise, toPromiseArray} = require("arc-topromise");
 
 class MySQLConnection extends EventEmitter{
 	constructor(connectionUri){
+		super();
 		if(connectionUri.threadId == null){
 			this._connection = mysql.createConnection(connectionUri);
 		}else{
@@ -105,6 +106,7 @@ class MySQLConnection extends EventEmitter{
 
 class MySQLPool extends EventEmitter{
 	constructor(connectionUri){
+		super();
 		this._connections = {};
 		this._pool = mysql.createPool(connectionUri);
 		this._pool.on("error", this.emit.bind(this, "error"));
@@ -175,6 +177,7 @@ class MySQLPool extends EventEmitter{
 
 class MySQLPoolCluster extends EventEmitter{
 	constructor(options){
+		super();
 		this._connections = {};
 		this._poolCluster = mysql.createPoolCluster(options);
 		this._poolCluster.on("remove", this.emit.bind(this, "remove"));
