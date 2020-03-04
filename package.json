@@ -1,6 +1,6 @@
 {
 	"name": "mysql-promisified",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "mysql but promisified",
 	"main": "index.js",
 	"scripts": {
