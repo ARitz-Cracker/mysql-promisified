@@ -173,7 +173,7 @@ class MySQLPool extends EventEmitter{
 	}
 }
 
-class MySQLPool extends EventEmitter{
+class MySQLPoolCluster extends EventEmitter{
 	constructor(options){
 		this._connections = {};
 		this._poolCluster = mysql.createPoolCluster(options);
@@ -214,7 +214,7 @@ const mysqlPromisified = {
 		return new MySQLPool(options);
 	},
 	createPoolCluster: function(options){
-
+		return new MySQLPoolCluster(options);
 	},
 	escape: mysql.escape.bind(mysql),
 	format: mysql.format.bind(mysql),
