@@ -124,6 +124,7 @@ class MySQLPool extends EventEmitter{
 			this._connections[threadId].on("disconnected", () => {
 				delete this._connections[threadId];
 			});
+			this._connections[threadId].on("error", Function.prototype); // Errors are already handled internally
 			this.emit("connection", this._connections[threadId]);
 		});
 	}
@@ -202,6 +203,7 @@ class MySQLPoolCluster extends EventEmitter{
 		this._connections[threadId].on("disconnected", () => {
 			delete this._connections[threadId];
 		});
+		this._connections[threadId].on("error", Function.prototype); // Errors are already handled internally
 		return this._connections[threadId];
 	}
 	end(){
