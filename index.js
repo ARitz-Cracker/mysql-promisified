@@ -1,7 +1,6 @@
 const {EventEmitter} = require("events");
-const mysql = require("mysql");
+const mysql = require("mysql"); // Some JSDoc comments copied more-or-less verbatim from this module's source
 const {toPromise, toPromiseArray} = require("arc-topromise");
-
 class MySQLConnection extends EventEmitter{
 	constructor(connectionUri){
 		super();
@@ -22,7 +21,7 @@ class MySQLConnection extends EventEmitter{
 		this._connection.on("fields", this.emit.bind(this, "fields"));
 		this._connection.on("end", this.emit.bind(this, "end"));
 	}
-
+	
 	beginTransaction(){
 		return toPromise(this._connection, this._connection.beginTransaction);
 	}
@@ -221,10 +220,40 @@ const mysqlPromisified = {
 	createPoolCluster: function(options){
 		return new MySQLPoolCluster(options);
 	},
+	/**
+	 * Escape a value for SQL.
+	 * @param {*} value The value to escape
+	 * @param {boolean} [stringifyObjects=false] Setting if objects should be stringified
+	 * @param {string} [timeZone=local] Setting for time zone to use for Date conversion
+	 * @return {string} Escaped string value
+	 * @public
+	 */
 	escape: mysql.escape.bind(mysql),
+	/**
+	 * Escape an identifier for SQL.
+	 * @param {*} value The value to escape
+	 * @param {boolean} [forbidQualified=false] Setting to treat '.' as part of identifier
+	 * @return {string} Escaped string value
+	 * @public
+	 */
+	escapeId: mysql.escapeId.bind(mysql),
+	/**
+	 * Format SQL and replacement values into a SQL string.
+	 * @param {string} sql The SQL for the query
+	 * @param {array} [values] Any values to insert into placeholders in sql
+	 * @param {boolean} [stringifyObjects=false] Setting if objects should be stringified
+	 * @param {string} [timeZone=local] Setting for time zone to use for Date conversion
+	 * @return {string} Formatted SQL string
+	 * @public
+	 */
 	format: mysql.format.bind(mysql),
-	raw: mysql.raw.bind(mysql),
-	escapeId: mysql.escapeId.bind(mysql)
+	/**
+	 * Wrap raw SQL strings from escape overriding.
+	 * @param {string} sql The raw SQL
+	 * @return {object} Wrapped object
+	 * @public
+	 */
+	raw: mysql.raw.bind(mysql)
 }
 
 module.exports = mysqlPromisified;
